@@ -1,0 +1,22 @@
+<div>
+	<form>
+		<label>Name</label>
+		<input ng-model="newPost.name">
+		<label>Description</label>
+		<input ng-model="newPost.description">
+		<button ng-click="posts.save(newPost); newPost='';">Add</button>
+		<button ng-click="removeAll()">remove all</button>
+	</form>
+	<ul>
+		<li ng-repeat="post in posts">
+			<a href="/posts/{{post._id}}">
+				{{post.name}}
+			</a>
+			<button ng-click="remove(post)">X</button>
+			<p>
+				{{post.description}}
+			</p>
+		</li>
+		<p>Total number of parties: {{posts.length}}</p>
+	</ul>
+</div>

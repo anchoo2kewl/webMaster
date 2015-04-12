@@ -1,23 +1,62 @@
+Posts = new Mongo.Collection("posts");
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
+  angular.module('main',['angular-meteor', 'ui.router']);
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
-}
+  angular.module("main").config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
+    function($urlRouterProvider, $stateProvider, $locationProvider){
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+      $locationProvider.html5Mode(true);
+
+      $stateProvider
+        .state('posts', {
+          url: '/posts',
+          templateUrl: 'posts-list.ng.html',
+          controller: 'PostsListCtrl'
+        })
+        .state('postsDetails', {
+          url: '/posts/:postsId',
+          templateUrl: 'post-details.ng.html',
+          controller: 'PostDetailsCtrl'
+        });
+
+        $urlRouterProvider.otherwise("/posts");
+  }]);
+
+   
+
+  angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor',
+    function($scope, $meteor){
+
+      $scope.posts = $meteor.collection(Posts);
+      $scope.remove = function(post){
+        $scope.posts.remove(post);
+      };
+
+      $scope.removeAll = function(){
+        $scope.posts.remove();
+      };
+
+    }]);
+
+  angular.module("main").controller("PostDetailsCtrl", ['$scope', '$stateParams', '$meteor',
+    function($scope, $stateParams, $meteor){
+
+
+      $scope.post = $meteor.object(Posts, $stateParams.postsId, false);
+
+      $scope.save = function() {
+      $scope.post.save().then(function(numberOfDocs){
+        console.log('save success doc affected ', numberOfDocs);
+        }, function(error){
+          console.log('save error', error);
+        });
+      };
+
+      $scope.reset = function() {
+        $scope.post.reset();
+      };
+
+  }]);
 }

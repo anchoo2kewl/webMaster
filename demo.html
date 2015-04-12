@@ -1,14 +1,13 @@
 <head>
-  <title>demo</title>
+  <base href="/">
 </head>
-
 <body>
-  <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+  <div ng-app="main">
+    <h1>
+      <a href="/posts">Home</a>
+    </h1>
+    <div ui-view></div>
+  </div>
+
 </body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
