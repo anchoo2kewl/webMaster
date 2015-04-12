@@ -44,7 +44,7 @@ if (Meteor.isClient) {
     function($scope, $stateParams, $meteor){
 
 
-      $scope.post = $meteor.object(Posts, $stateParams.postsId, false);
+      $scope.post = $meteor.object(Posts, $stateParams.postsId);
 
       $scope.save = function() {
       $scope.post.save().then(function(numberOfDocs){
