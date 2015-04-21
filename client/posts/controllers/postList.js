@@ -1,9 +1,9 @@
-angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor',
-    function($scope, $meteor){
+angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$location',
+    function($scope, $meteor, $location){
 
 		$scope.page = 1;
 		$scope.perPage = 3;
-		$scope.sort = { name: 1 };
+		$scope.sort = { title: 1 };
 	    $scope.orderProperty = '1';
 
 		$scope.posts = $meteor.collection(function() {
@@ -26,6 +26,12 @@ angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor',
 			$scope.posts.remove(post);
 		};
 
+		$scope.edit = function(post){
+			$scope.location = "/edit/"+post._id;
+			console.log($scope.location);
+			$location.path( $scope.location );
+		};
+
 		$scope.removeAll = function(){
 			$scope.posts.remove();
 		};
@@ -36,7 +42,7 @@ angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor',
 
     	$scope.$watch('orderProperty', function(){
       		if ($scope.orderProperty)
-        	$scope.sort = {name: parseInt($scope.orderProperty)};
+        	$scope.sort = {title: parseInt($scope.orderProperty)};
 		});
 	}]
 );

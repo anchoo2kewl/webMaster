@@ -3,7 +3,7 @@ Meteor.publish("posts", function (options, searchString) {
     searchString = '';
 
   Counts.publish(this, 'numberOfPosts', Posts.find({
-    'name' : { '$regex' : '.*' + searchString || '' + '.*', '$options' : 'i' },
+    'title' : { '$regex' : '.*' + searchString || '' + '.*', '$options' : 'i' },
     $or:[
       {$and:[
         {"published": true},
@@ -15,7 +15,7 @@ Meteor.publish("posts", function (options, searchString) {
       ]}
     ]}), { noReady: true });
   return Posts.find({
-    'name' : { '$regex' : '.*' + searchString || '' + '.*', '$options' : 'i' },
+    'title' : { '$regex' : '.*' + searchString || '' + '.*', '$options' : 'i' },
     $or:[
       {$and:[
         {"published": true},

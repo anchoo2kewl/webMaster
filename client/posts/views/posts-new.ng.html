@@ -1,0 +1,10 @@
+<form>
+	<label>Title</label>
+	<input ng-model="newPost.title">
+	<label>Content</label>
+	<input ng-model="newPost.content">
+	<label>Published</label>
+	<input type="checkbox" ng-model="newPost.published">
+	<button ng-click="newPost.owner=$root.currentUser._id; posts.push(newPost)">Add</button>
+	<button ng-click="removeAll()">remove all</button>
+</form>

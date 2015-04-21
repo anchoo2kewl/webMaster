@@ -3,7 +3,7 @@ angular.module("main").run(["$rootScope", "$location", function($rootScope, $loc
     // We can catch the error thrown when the $requireUser promise is rejected
     // and redirect the user back to the main page
     if (error === "AUTH_REQUIRED") {
-      $location.path("/posts");
+      $location.path("/");
     }
   });
 }]);
@@ -14,15 +14,30 @@ angular.module("main").config(['$urlRouterProvider', '$stateProvider', '$locatio
       $locationProvider.html5Mode(true);
 
       $stateProvider
-        .state('posts', {
-          url: '/posts',
+        .state('manage', {
+          url: '/manage',
           templateUrl: 'client/posts/views/posts-list.ng.html',
           controller: 'PostsListCtrl'
         })
-        .state('postsDetails', {
+        .state('new', {
+          url: '/new',
+          templateUrl: 'client/posts/views/posts-new.ng.html',
+          controller: 'PostsListCtrl'
+        })
+        .state('home', {
+          url: '/',
+          templateUrl: 'client/posts/views/pl-raw.ng.html',
+          controller: 'PostsListCtrl'
+        })
+        .state('PostDetails', {
           url: '/posts/:postsId',
           templateUrl: 'client/posts/views/post-details.ng.html',
-          controller: 'PostDetailsCtrl',
+          controller: 'PostDetailsCtrl'
+        })
+        .state('postsEdit', {
+          url: '/edit/:postsId',
+          templateUrl: 'client/posts/views/post-edit.ng.html',
+          controller: 'PostEditCtrl',
             resolve: {
               "currentUser": ["$meteor", function($meteor){
                 return $meteor.requireUser();
@@ -30,5 +45,5 @@ angular.module("main").config(['$urlRouterProvider', '$stateProvider', '$locatio
             }
         });
 
-        $urlRouterProvider.otherwise("/posts");
+        $urlRouterProvider.otherwise("/");
   }]);

@@ -1,0 +1,21 @@
+<ul>
+	<div>
+		<input type="search" ng-model="search" placeholder="Search">
+		<select ng-model="orderProperty">
+			<option value="1">Ascending</option>
+			<option value="-1">Descending</option>
+		</select>
+	</div>
+	<li dir-paginate="post in posts | itemsPerPage: perPage" total-items="postsCount.count">
+		<a href="/posts/{{post._id}}">
+			{{post.title}}
+		</a>
+		<button ng-click="edit(post)" ng-show="$root.currentUser && $root.currentUser._id == post.owner">Edit</button>
+		<button ng-click="remove(post)" ng-show="$root.currentUser && $root.currentUser._id == post.owner">X</button>
+		<p>
+			{{post.content}}
+		</p>
+	</li>
+	<p>Total number of posts: {{posts.length}}</p>
+</ul>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
