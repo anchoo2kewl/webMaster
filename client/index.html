@@ -10,10 +10,16 @@
 </head>
 <body>
 	<div ng-app="main">
-  	    <meteor-include src="loginButtons"></meteor-include>
-		<h1>
-      		<a href="/posts">Anshuman Biswas</a>
-    	</h1>
-    	<div ui-view></div>
+		<div class="container">
+			<div class="row">
+				<div class="login">
+  	    			<meteor-include src="loginButtons"></meteor-include>
+    			</div>
+			</div>
+			<h1>
+	      		<a href="/posts">Anshuman Biswas</a>
+	    	</h1>
+	    	<div ui-view></div>
+    	</div>
   	</div>
 </body>
