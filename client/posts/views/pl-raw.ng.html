@@ -1,17 +1,38 @@
+<div class="row">
+	<form action="" class="search-form">
+		<div class="col-md-2">
+			<select ng-model="orderProperty" class="form-control orderPosts">
+				<option value="1">Ascending</option>
+				<option value="-1">Descending</option>
+			</select>
+		</div>
+		<div class="col-md-2">
+		    <div class="form-group has-feedback">
+				<label for="search" class="sr-only">Search</label>
+				<input type="text" class="form-control"  ng-model="search" placeholder="Search">
+		  		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+			</div>
+		</div>
+		<div class="actionButton">
+			<button type="button" class="btn btn-labeled btn-success" ng-click="new()" ng-show="$root.currentUser">
+		    <span class="btn-label"><i class="glyphicon glyphicon-edit"></i></span> Create a New Post</button>
+		</div>
+	</form>
+</div>
+<h4 class="page-header recentPosts">Recent Posts</h4>
 <ul>
-	<div>
-		<input type="search" ng-model="search" placeholder="Search">
-		<select ng-model="orderProperty">
-			<option value="1">Ascending</option>
-			<option value="-1">Descending</option>
-		</select>
-	</div>
 	<li dir-paginate="post in posts | itemsPerPage: perPage" total-items="postsCount.count">
 		<a href="/posts/{{post._id}}">
 			{{post.title}}
 		</a>
-		<button ng-click="edit(post)" ng-show="$root.currentUser && $root.currentUser._id == post.owner">Edit</button>
-		<button ng-click="remove(post)" ng-show="$root.currentUser && $root.currentUser._id == post.owner">X</button>
+		<div class="actionButton">
+			<button ng-click="remove(post)"   class="btn btn-labeled btn-danger" ng-show="$root.currentUser && $root.currentUser._id == post.owner">
+			<span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span> Delete Post</button>
+		</div>
+		<div class="actionButton">
+			<button ng-click="edit(post)"  class="btn btn-labeled btn-info" ng-show="$root.currentUser && $root.currentUser._id == post.owner">
+			<span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span> Edit Post</button>
+		</div>
 		<p>
 			{{post.content}}
 		</p>

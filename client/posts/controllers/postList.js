@@ -28,6 +28,12 @@ angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$locat
 
 		$scope.edit = function(post){
 			$scope.location = "/edit/"+post._id;
+			// console.log($scope.location);
+			$location.path( $scope.location );
+		};
+
+		$scope.new = function(){
+			$scope.location = "/new";
 			console.log($scope.location);
 			$location.path( $scope.location );
 		};
