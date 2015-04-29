@@ -5,12 +5,24 @@ angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$locat
 		$scope.perPage = 3;
 		$scope.sort = { title: 1 };
 	    $scope.orderProperty = '1';
+	    var converter = new Showdown.converter();
+
+	    hljs.initHighlightingOnLoad();
+	    
+	    // $scope.h1tml = converter.makeHtml('#hello markdown!');
 
 		$scope.posts = $meteor.collection(function() {
-			return Posts.find({}, {
-		        sort : $scope.getReactively('sort')
+			var posts = Posts.find({}, {
+		        sort : $scope.getReactively('sort'),
+		        transform: function(post){
+			      post.markdown = converter.makeHtml(post.content);;
+			      return post;
+			    }
 			});
+			return posts;
 		});
+
+		// $scope.posts.content = converter.makeHtml($scope.posts.content);
 
 		$meteor.autorun($scope, function() {
 			$meteor.subscribe('posts', {

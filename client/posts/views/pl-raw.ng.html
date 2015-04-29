@@ -34,7 +34,7 @@
 			<span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span> Edit Post</button>
 		</div>
 		<p>
-			{{post.content}}
+			<div ng-bind-html="post.markdown"></div>
 		</p>
 	</li>
 	<p>Total number of posts: {{posts.length}}</p>
