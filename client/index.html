@@ -24,7 +24,9 @@
 				<h1 class="blog-title"><a href="/">Anshuman Biswas</a></h1>
 				<p class="lead blog-description">Thoughts, Musings and Code.</p>
 			</div>
-	    	<div ui-view></div>
+			{{#mathjax}}
+	    		<div ui-view></div>
+	    	{{/mathjax}}
 	    	<hr>
 	    	<footer class="footer">
 		    	<nav class="footer-nav">
@@ -39,5 +41,10 @@
 			</footer>
     	</div>
   	</div>
+
+  	
+
+
+
 
 </body>

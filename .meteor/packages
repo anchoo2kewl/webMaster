@@ -16,3 +16,4 @@ tmeasday:publish-counts
 twbs:bootstrap
 jquery
 angularjs:angular-sanitize
+mrt:mathjax
