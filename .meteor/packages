@@ -17,3 +17,4 @@ twbs:bootstrap
 jquery
 angularjs:angular-sanitize
 mrt:mathjax
+d3js:d3
