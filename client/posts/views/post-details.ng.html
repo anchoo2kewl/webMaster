@@ -1,2 +1,13 @@
 <h3 class="page-header recentPosts">{{post.title}}</h3>
-<h4 class="post-body" ng-bind-html="markdown(post.content)"></h4>
+{{mathSplit(post.content)}}
+<!-- <h4 class="post-body" ng-bind-html="post.markdown"></h4> -->
+<div ng-repeat="md in post.markdown">
+	<div ng-if="md.type == 'NonMath'">
+		<div class="post-body" ng-bind-html="md.content"></div>
+	</div>
+	<div ng-if="md.type == 'Math'">
+		<span mathjax-bind="md.content"></span>
+		<!-- <div mathjax-html="md.content"></div> -->
+	</div>
+</div>
+

@@ -1,5 +1,5 @@
-angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$location',
-    function($scope, $meteor, $location){
+angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$location', 'myService',
+    function($scope, $meteor, $location, myService){
 
 		$scope.page = 1;
 		$scope.perPage = 3;
@@ -15,7 +15,8 @@ angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$locat
 			var posts = Posts.find({}, {
 		        sort : $scope.getReactively('sort'),
 		        transform: function(post){
-			      post.markdown = converter.makeHtml(post.content);;
+			      post.markdown = converter.makeHtml(post.content);
+			      post.markdown = myService.splitMath(post.markdown);
 			      return post;
 			    }
 			});

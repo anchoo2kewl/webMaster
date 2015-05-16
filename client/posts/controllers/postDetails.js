@@ -1,5 +1,5 @@
-angular.module("main").controller("PostDetailsCtrl", ['$scope', '$stateParams', '$meteor',
-  function($scope, $stateParams, $meteor){
+angular.module("main").controller("PostDetailsCtrl", ['$scope', '$stateParams', '$meteor', 'myService',
+  function($scope, $stateParams, $meteor, myService){
 
     $scope.post = $meteor.object(Posts, $stateParams.postsId, false); 
 
@@ -12,7 +12,18 @@ angular.module("main").controller("PostDetailsCtrl", ['$scope', '$stateParams', 
       subscriptionHandle = handle;
     });
 
+    $scope.mathSplit = function (content) {
+        // console.log(content);
+        if(content)
+        {
+
+            $scope.post.markdown = converter.makeHtml(content);
+            $scope.post.markdown = myService.splitMath($scope.post.markdown);
+        }
+    };
+
     $scope.markdown = function (content) {
+
     	if(content)
     		return converter.makeHtml(content);
     };
