@@ -21,11 +21,15 @@
 					<input type="checkbox" ng-model="post.published">Is published ?
 				</label>
 			</div>
-<!-- 
-			<input ng-model="post.created" type="hidden" >
-			<input ng-model="post.updated" type="hidden" > -->
+			<div class="form-group float-label-control">
+			<label for="alias">Created: </label>
+				<input type="text" value="{{post.created| date:'MM/dd/yyyy'}}" readonly>
+			</div>
 
-			{{date}}
+			<div class="form-group float-label-control">
+			<label for="alias">Updated: </label>
+				<input type="text" value="{{post.updated| date:'MM/dd/yyyy'}}" readonly>
+			</div>
 
 			<div class="row">
 				<button ng-click="save()" class="btn btn-default">Save</button>

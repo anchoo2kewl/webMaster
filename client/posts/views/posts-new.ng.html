@@ -3,9 +3,6 @@
 	<div class="col-sm-8">
 		<br />
 		<form role="form">
-			<input type="hidden" ng-model="newPost.created">
-			<input type="hidden" ng-model="newPost.updated">
-
             <div class="form-group float-label-control">
 		  	    <label for="title">Title</label>
 				<input ng-model="newPost.title" placeholder="Post Title">
@@ -25,7 +22,7 @@
 			</div>
 
 			<div class="row">
-				<button class="btn btn-default" ng-click="newPost.owner=$root.currentUser._id; posts.push(newPost)">Add</button>
+				<button class="btn btn-default" ng-click="newPost.owner=$root.currentUser._id; newPost.created = date; newPost.updated = date; posts.push(newPost)">Add</button>
 				<button class="btn btn-default" ng-click="removeAll()">remove all</button>
 			</div>
 		</form>
