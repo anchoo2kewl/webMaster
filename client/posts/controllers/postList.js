@@ -6,6 +6,8 @@ angular.module("main").controller("PostsListCtrl", ['$scope', '$meteor', '$locat
 		$scope.sort = { title: 1 };
 	    $scope.orderProperty = '1';
 	    var converter = new Showdown.converter();
+        $scope.date = new Date();
+
 
 	    hljs.initHighlightingOnLoad();
 	    

@@ -1,7 +1,7 @@
 angular.module("main").controller("PostDetailsCtrl", ['$scope', '$stateParams', '$meteor', 'myService',
   function($scope, $stateParams, $meteor, myService){
 
-    $scope.post = $meteor.object(Posts, $stateParams.postsId, false); 
+    $scope.post = $meteor.object(Posts, {alias: $stateParams.postsAlias}, false); 
 
     var converter = new Showdown.converter();
     // $scope.post.content = converter.makeHtml($scope.post.content);
@@ -20,12 +20,6 @@ angular.module("main").controller("PostDetailsCtrl", ['$scope', '$stateParams', 
             $scope.post.markdown = converter.makeHtml(content);
             $scope.post.markdown = myService.splitMath($scope.post.markdown);
         }
-    };
-
-    $scope.markdown = function (content) {
-
-    	if(content)
-    		return converter.makeHtml(content);
     };
 
     $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');

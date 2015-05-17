@@ -22,7 +22,7 @@
 <h4 class="page-header recentPosts">Recent Posts</h4>
 <ul>
 	<li dir-paginate="post in posts | itemsPerPage: perPage" total-items="postsCount.count">
-		<a href="/posts/{{post._id}}">
+		<a href="/posts/{{post.alias}}">
 			{{post.title}}
 		</a>
 		<div class="actionButton">

@@ -30,7 +30,7 @@ angular.module("main").config(['$urlRouterProvider', '$stateProvider', '$locatio
           controller: 'PostsListCtrl'
         })
         .state('PostDetails', {
-          url: '/posts/:postsId',
+          url: '/posts/:postsAlias',
           templateUrl: 'client/posts/views/post-details.ng.html',
           controller: 'PostDetailsCtrl'
         })
