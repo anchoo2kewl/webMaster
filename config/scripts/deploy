@@ -1,0 +1,10 @@
+sudo service main stop
+cd /home/anshuman/demo
+meteor build .
+rm -rf /home/main/*
+mv demo.tar.gz /home/main
+cd /home/main
+tar -zxf demo.tar.gz
+cd /home/main/bundle/programs/server
+npm install
+sudo service main start

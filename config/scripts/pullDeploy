@@ -1,0 +1,3 @@
+cd /home/anshuman/demo
+git pull origin master
+deploy
